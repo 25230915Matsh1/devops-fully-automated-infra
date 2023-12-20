@@ -13,7 +13,7 @@ variable "iam_role_name" {
   description = "iam role name to attach to the instance profile"
 }
 
-variable "key_pair_name" {
+variable "New-Keypair" {
   type        = string
   description = "New-Keypair"
 
