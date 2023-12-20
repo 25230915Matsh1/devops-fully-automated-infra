@@ -9,27 +9,27 @@ module "iam" {
 
 # module code to create the ec2 instance with user data
 module "ec2_dev" {
-  source = "./ec2"
-  name   = "dev"
+  source        = "./ec2"
+  name          = "dev"
   tags          = local.common_tags
   iam_role_name = module.iam.ec2_iam_role_name
-  key_pair_name = New-Keypair
+  key_pair_name = "New-Keypair"
 }
 
-# module code to create the ec2 instance with user data
+# module code to create the ec2 instance with user data.
 module "ec2_stage" {
-  source = "./ec2"
-  name   = "stage"
+  source        = "./ec2"
+  name          = "stage"
   tags          = local.common_tags
   iam_role_name = module.iam.ec2_iam_role_name
-  key_pair_name = New-Keypair
+  key_pair_name = "New-Keypair"
 }
 
 # module code to create the ec2 instance with user data
 module "ec2_prod" {
-  source = "./ec2"
-  name   = "prod"
+  source        = "./ec2"
+  name          = "prod"
   tags          = local.common_tags
   iam_role_name = module.iam.ec2_iam_role_name
-  key_pair_name = New-Keypair
+  key_pair_name = "New-Keypair"
 }
