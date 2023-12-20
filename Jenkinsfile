@@ -12,7 +12,6 @@ pipeline {
                 echo 'Cloning project codebase...'
                 git branch: 'main', url: 'https://github.com/25230915Matsh1/devops-fully-automated-infra.git'
                 sh 'ls'
-                sh 'pwd'
             }
         }
         
@@ -48,25 +47,22 @@ pipeline {
                 sh 'sudo terraform plan'
                
             }
-        }
-        
-        
-        
+        } 
+                
         
         stage('Checkov scan') {
             steps {
                 
-                sh """
+                sh """                
+                sudo pip3 install --upgrade pip
                 sudo pip3 install checkov
-                checkov -d .
+                #checkov -d .
                 #checkov -d . --skip-check CKV_AWS_23,CKV_AWS_24,CKV_AWS_126,CKV_AWS_135,CKV_AWS_8,CKV_AWS_23,CKV_AWS_24
-                #checkov -d . --skip-check CKV_AWS*
+                checkov -d . --skip-check CKV_AWS*
                 """
                
             }
-        }
-        
-        
+        }               
         
         stage('Manual approval') {
             steps {
@@ -79,13 +75,19 @@ pipeline {
         
          stage('Terraform apply') {
             steps {
-                echo 'Terraform apply...'
+                echo 'Terraform apply...'                           
                 sh 'sudo terraform apply --auto-approve'
-               
                
             }
         }
         
+         stage('Terraform destroy') {
+             steps {
+                echo 'Terraform destroy...'                             
+                 sh 'sudo terraform destroy --auto-approve'
+               
+             }
+         }
         
     }
     

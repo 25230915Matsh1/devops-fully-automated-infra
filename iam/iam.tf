@@ -39,7 +39,7 @@ resource "aws_iam_role" "iam_role" {
             "logs:DescribeLogStreams",
             "logs:CreateLogGroup",
             "logs:PutLogEvents"
-            
+
           ]
           Effect   = "Allow"
           Resource = "*"
@@ -49,7 +49,4 @@ resource "aws_iam_role" "iam_role" {
   }
 
   tags = var.tags
-
-  # permissions_boundary = "arn:aws:iam::ACCOUNT_NUMBER:policy/ALBIngressControllerIAMPolicy"
 }
-
